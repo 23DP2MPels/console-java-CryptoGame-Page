@@ -1,0 +1,117 @@
+body {
+    background-color: #222831;
+}
+
+nav {
+    background-color: #393E47;
+    display: flex;
+    justify-content: space-between;
+    width: 98%;
+    height: 3rem;
+    margin: 1rem;
+    border-radius: 1rem;
+}
+
+.button-box {
+    display: flex;
+    align-items: center;
+    padding-inline: 5rem;
+}
+
+nav a {
+    margin-inline: 5rem;
+    text-decoration: none;
+    color: #FFFFFF;
+    font-size: 24px;
+    
+}
+
+.hero-text {
+    margin-block: 6rem;
+    margin-left: 2rem;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #FFFFFF;
+}
+
+.hero-text p {
+    font-size: 3rem;
+}
+
+.hero-text h1 {
+    margin: 0;
+    font-size: 6rem;
+}
+
+
+.hero-text a {
+    background-color: #393E47;
+    color: #F0A500;
+    text-decoration: none;
+    padding: 0.5rem 6rem;
+    font-size: 3rem;
+    border-radius: 4rem;
+    transition: 0.3s;
+}
+
+.hero-text a:hover {
+    transition: 0.3s;
+    background-color: #F0A500;
+    color: #FFFFFF;
+}
+
+.card {
+    background-color: #393E47;
+    width: 15rem;
+    height: 20rem;
+    animation: 1.5s infinite flaot ease-in-out;
+}
+
+
+.card:nth-child(2) {
+    animation-delay: 0.2s;
+}
+.card:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+.card:nth-child(4) {
+    animation-delay: 0.6s;
+}
+
+.card-box {
+    margin-top: 5rem;
+    display: flex;
+    justify-content: center;
+    gap: 5rem;
+    text-align: center;
+}
+
+.card:hover {
+    animation-play-state: paused;
+}
+
+
+@keyframes flaot {
+    0%, 100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(1rem);
+    }
+}
+
+/* @keyframes flaot {
+    0%, 100% {
+        transform: rotateX(0) scale(1);
+    }
+
+    50% {
+        transform: rotateX(360deg) scale(1.5);
+    }
+} */
