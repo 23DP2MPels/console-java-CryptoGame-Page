@@ -35,6 +35,10 @@ nav a {
     
 }
 
+.hero-image img{
+    width: 50vh;
+}
+
 .hero-text {
     margin-block: 6rem;
     margin-left: 2rem;
@@ -45,6 +49,7 @@ nav a {
     align-items: center;
     text-align: center;
     color: #FFFFFF;
+    float:left
 }
 
 .hero-text p {
