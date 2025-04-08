@@ -1,5 +1,16 @@
+html {
+    scroll-behavior:smooth;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
 body {
     background-color: #222831;
+    overflow-x: hidden;
 }
 
 nav {
@@ -13,12 +24,11 @@ nav {
 }
 
 hr {
-  width: 90%;
-  size: 1;
-  background-color: #393E47;
-  padding-top: 5px;
-  border: none;
-
+    width: 90%;
+    size: 1;
+    background-color: #393E47;
+    padding-top: 5px;
+    border: none;
 }
 
 .button-box {
@@ -34,10 +44,11 @@ nav a {
     font-size: 24px;
     
 }
-
-.hero-image img{
-    width: 50vh;
+#container3D canvas{
+    width: 10vw;
+    margin-bottom: 5rem;
 }
+
 
 .hero-text {
     margin-block: 6rem;
@@ -54,6 +65,7 @@ nav a {
 
 .hero-text p {
     font-size: 3rem;
+    margin-bottom: 2rem;
 }
 
 .hero-text h1 {
@@ -61,6 +73,10 @@ nav a {
     font-size: 6rem;
 }
 
+.hero {
+    width: 100vw;
+    display: flex;
+}
 
 .hero-text a {
     background-color: #393E47;
