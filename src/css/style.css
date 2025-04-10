@@ -11,6 +11,7 @@ html {
 body {
     background-color: #222831;
     overflow-x: hidden;
+    padding-inline: 2rem;
 }
 
 nav {
@@ -24,10 +25,10 @@ nav {
 }
 
 hr {
-    width: 90%;
+    width: 98%;
     size: 1;
     background-color: #393E47;
-    padding-top: 5px;
+    margin: 2rem auto;
     border: none;
 }
 
@@ -125,6 +126,11 @@ nav a {
     animation-play-state: paused;
 }
 
+.download-box {
+    padding: 15%;
+    background-color: #393E47;
+    margin-block: 5rem;
+}
 
 @keyframes flaot {
     0%, 100% {
