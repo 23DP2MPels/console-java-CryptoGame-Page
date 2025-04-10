@@ -2,6 +2,15 @@ import * as THREE from "https://cdn.skypack.dev/three@0.129.0/build/three.module
 import { OrbitControls } from "https://cdn.skypack.dev/three@0.129.0/examples/jsm/controls/OrbitControls.js";
 import { GLTFLoader } from "https://cdn.skypack.dev/three@0.129.0/examples/jsm/loaders/GLTFLoader.js";
 
+document.addEventListener("scroll", () => {
+  const scrollToTopButton = document.querySelector(".scroll-to-top");
+  if (window.scrollY > 200) {
+      scrollToTopButton.style.display = "flex";
+  } else {
+      scrollToTopButton.style.display = "none";
+  }
+});
+
 const scene = new THREE.Scene()
 
 const camera = new THREE.PerspectiveCamera(75,

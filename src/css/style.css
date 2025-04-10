@@ -11,7 +11,12 @@ html {
 body {
     background-color: #222831;
     overflow-x: hidden;
-    padding-inline: 2rem;
+    color: white;
+    flex-direction: column;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
 }
 
 nav {
@@ -25,11 +30,11 @@ nav {
 }
 
 hr {
-    width: 98%;
-    size: 1;
+    width: 90%;
+    height: 6px;
     background-color: #393E47;
-    margin: 2rem auto;
     border: none;
+    margin: 1rem auto;
 }
 
 .button-box {
@@ -101,6 +106,8 @@ nav a {
     height: 20rem;
     animation: 1.5s infinite flaot ease-in-out;
     margin-bottom: 5.5rem;
+    padding-block: 1rem;
+    padding-inline: 1rem;
 }
 
 .card:nth-child(2) {
@@ -127,8 +134,29 @@ nav a {
 }
 
 .download-box {
+    padding: 10%;
+    background-color: rgba(57, 62, 71, 0.68);
+    margin: 5rem auto;
+    width: 90%;
+}
+
+.download-box h1 {
+    font-size: 6rem;
+    margin-bottom: 2rem;
+}
+.download-box a {
+    background-color: #F0A500;
+    color: #FFFFFF;
+    text-decoration: none;
+    padding: 1rem 6rem;
+    font-size: 3rem;
+    border-radius: 2rem;
+    transition: 0.3s;
+}
+
+.usermanual {
     padding: 15%;
-    background-color: #393E47;
+    background-color: rgba(57, 62, 71, 0.68);
     margin-block: 5rem;
 }
 
@@ -151,3 +179,27 @@ nav a {
         transform: rotateX(360deg) scale(1.5);
     }
 } */
+
+.scroll-to-top {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    width: 3rem;
+    height: 3rem;
+    background-color: #F0A500;
+    color: #FFFFFF;
+    border-radius: 50%;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    font-size: 2rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s, transform 0.3s;
+    z-index: 1000;
+}
+
+.scroll-to-top:hover {
+    background-color: #393E47;
+    transform: scale(1.1);
+}
