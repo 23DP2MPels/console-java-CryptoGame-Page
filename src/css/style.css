@@ -50,13 +50,16 @@ nav a {
     font-size: 24px;
     
 }
+
 #container3D canvas{
     width: 10vw;
     margin-bottom: 5rem;
+    margin-left: 3rem;
 }
 
 
 .hero-text {
+    padding-left: 10rem;
     margin-block: 6rem;
     margin-left: 2rem;
     width: 50%;
@@ -85,8 +88,8 @@ nav a {
 }
 
 .hero-text a {
-    background-color: #393E47;
-    color: #F0A500;
+    background-color: #F0A500;
+    color: #FFFFFF;
     text-decoration: none;
     padding: 0.5rem 6rem;
     font-size: 3rem;
@@ -96,8 +99,8 @@ nav a {
 
 .hero-text a:hover {
     transition: 0.3s;
-    background-color: #F0A500;
-    color: #FFFFFF;
+    background-color: #393E47;
+    color: #F0A500;
 }
 
 .card {
@@ -144,7 +147,7 @@ nav a {
     font-size: 6rem;
     margin-bottom: 2rem;
 }
-.download-box a {
+.download-box button {
     background-color: #F0A500;
     color: #FFFFFF;
     text-decoration: none;
@@ -152,6 +155,13 @@ nav a {
     font-size: 3rem;
     border-radius: 2rem;
     transition: 0.3s;
+    border: none;
+}
+
+.download-box button:hover {
+    transition: 0.3s;
+    background-color: #393E47;
+    color: #F0A500;
 }
 
 .usermanual {
@@ -197,6 +207,7 @@ nav a {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
     transition: background-color 0.3s, transform 0.3s;
     z-index: 1000;
+    transition: 1s;
 }
 
 .scroll-to-top:hover {

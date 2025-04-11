@@ -24,7 +24,7 @@ loader.load(
   'src/models/bitcoin/scene.gltf',
   (gltf) => {
     const model = gltf.scene
-    model.scale.set( window.innerWidth*0.003, window.innerWidth*0.003, window.innerWidth*0.0015)
+    model.scale.set( 6, 3, 3)
     
     object = gltf.scene;
     scene.add(model)
@@ -39,7 +39,7 @@ let mouseY = window.innerHeight / 2;
 // dirLight.position.set(5,5,5)
 // scene.add(dirLight)
 
-const light = new THREE.PointLight('white',100,100)
+const light = new THREE.PointLight('white',55,90)
 light.position.set(0,5,10)
 scene.add(light)
 
