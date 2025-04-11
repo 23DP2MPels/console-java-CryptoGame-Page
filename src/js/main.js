@@ -11,6 +11,10 @@ document.addEventListener("scroll", () => {
   }
 });
 
+function bombarino() {
+  window.location.href = 'https://www.youtube.com/watch?v=OFhMGhvW_5I';
+}
+
 const scene = new THREE.Scene()
 
 const camera = new THREE.PerspectiveCamera(75,
