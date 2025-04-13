@@ -22,19 +22,17 @@ console.log('asd: ' + window.innerWidth)
 function checkAndHideModel() {
   if (modelHide > window.innerWidth) {
     document.getElementById("container3D").classList.add("hidden-visibility");
-  } else {
+  } 
+  // else if (730 >= window.innerWidth) {
+  //   document.getElementById("container3D").classList.add("hidden-visibility");
+  // } 
+  else {
     document.getElementById("container3D").classList.remove("hidden-visibility");
   }
 }
 
 checkAndHideModel()
 window.addEventListener('resize', checkAndHideModel);
-// ???
-
-function bombarino() {
-  window.location.href = 'https://www.youtube.com/watch?v=OFhMGhvW_5I';
-}
-
 
 // 3d model
 
