@@ -2,6 +2,9 @@ import * as THREE from "https://cdn.skypack.dev/three@0.129.0/build/three.module
 import { OrbitControls } from "https://cdn.skypack.dev/three@0.129.0/examples/jsm/controls/OrbitControls.js";
 import { GLTFLoader } from "https://cdn.skypack.dev/three@0.129.0/examples/jsm/loaders/GLTFLoader.js";
 
+
+// scroll button
+
 document.addEventListener("scroll", () => {
   const scrollToTopButton = document.querySelector(".scroll-to-top");
   if (window.scrollY > 200) {
@@ -11,9 +14,29 @@ document.addEventListener("scroll", () => {
   }
 });
 
+// 3d model hide
+const modelHide = window.innerWidth * 0.73
+console.log('asd: ' + modelHide)
+console.log('asd: ' + window.innerWidth)
+
+function checkAndHideModel() {
+  if (modelHide > window.innerWidth) {
+    document.getElementById("container3D").classList.add("hidden-visibility");
+  } else {
+    document.getElementById("container3D").classList.remove("hidden-visibility");
+  }
+}
+
+checkAndHideModel()
+window.addEventListener('resize', checkAndHideModel);
+// ???
+
 function bombarino() {
   window.location.href = 'https://www.youtube.com/watch?v=OFhMGhvW_5I';
 }
+
+
+// 3d model
 
 const scene = new THREE.Scene()
 
@@ -28,7 +51,8 @@ loader.load(
   'src/models/bitcoin/scene.gltf',
   (gltf) => {
     const model = gltf.scene
-    model.scale.set( 6, 3, 3)
+    model.scale.set(2 * (window.innerWidth / window.innerHeight), 1, 1.5 * (window.innerWidth / window.innerHeight))
+    // model.scale.set(4, 1, 3)
     
     object = gltf.scene;
     scene.add(model)
@@ -53,7 +77,7 @@ scene.add(light)
 camera.position.z = 5
 
 const renderer = new THREE.WebGLRenderer({ alpha: true })
-renderer.setSize(600, 600)
+renderer.setSize((window.innerWidth/2), (window.innerHeight/1.5))
 
 // document.body.appendChild(renderer.domElement)
 
