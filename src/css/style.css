@@ -25,6 +25,27 @@ html {
     font-weight: 400;
 }
 
+.move-box{
+    filter: blur(0.3rem);
+    position: absolute;
+    display: flex;
+    margin-top: -15rem;
+    width: 100vw;
+    right: 100vw;
+    z-index: -1;
+    animation: move-img 10s linear infinite;
+}
+
+.move-box img{
+    width: 100vw;
+}
+
+@keyframes move-img {
+    to {
+        transform: translateX(100vw);
+    }
+}
+
 body {
     background-color: #222831;
     overflow-x: hidden;
@@ -173,6 +194,8 @@ nav img {
     background-color: rgba(57, 62, 71, 0.68);
     margin: 5rem auto;
     width: 90%;
+    display: flex;
+    justify-content: space-between;
 }
 
 .download-box h1 {
@@ -200,6 +223,33 @@ nav img {
     padding: 15%;
     background-color: rgba(57, 62, 71, 0.68);
     margin-block: 5rem;
+}
+
+.button-container {
+    width: 50%;
+}
+
+.text-container {
+    width: 30%;
+    font-size: 2rem;
+}
+
+.text-container li {
+    list-style-type: decimal;
+    margin-bottom: 30px;
+}
+
+.text-container li::marker {
+    color: #F0A500;
+}
+
+.text-container img {
+    height:50px;
+    filter: invert(100%);
+    list-style-type: none;
+    text-decoration: none;
+    float: right;
+    margin-right: 20px;
 }
 
 @keyframes flaot {
@@ -272,6 +322,16 @@ nav img {
     #container3D{
         visibility: hidden;
         position: absolute; 
+    }
+    nav {
+        min-height: 58.5px;
+    }
+    nav a {
+        font-size: 23px;
+    }
+    nav img {
+        height: 52px;
+        margin-top: 3px;
     }
 }
 
