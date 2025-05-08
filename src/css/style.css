@@ -25,34 +25,48 @@ html {
     font-weight: 400;
 }
 
+img {
+    max-width: 100%;
+    height: auto;
+}
+
 .move-box{
-    filter: blur(0.3rem);
-    position: absolute;
-    display: flex;
-    margin-top: -15rem;
-    width: 100vw;
-    right: 100vw;
-    z-index: -1;
-    animation: move-img 10s linear infinite;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* Помещаем на задний план */
+    background-image: url('/src/image/candlestick-chart.png');
+    background-repeat: repeat-x; /* Повторяем по горизонтали */
+    background-size: auto 100%; /* Сохраняем пропорции по высоте */
+    animation: scrollBackground 20s linear infinite;
+    filter: blur(5px) brightness(0.7);
 }
 
 .move-box img{
+    filter: blur(0.3rem);
     width: 100vw;
 }
 
-@keyframes move-img {
+
+@keyframes scrollBackground {
+    from {
+      background-position: 0 0;
+    }
     to {
-        transform: translateX(100vw);
+      background-position: 100% 0; /* Сдвигаем на 100% ширины изображения */
     }
 }
 
 body {
     background-color: #222831;
-    overflow-x: hidden;
+    scrollbar-width: none; /* Для Firefox */
     color: white;
     flex-direction: column;
     display: flex;
     align-items: center;
+    position: relative;
     justify-content: center;
 }
 
@@ -64,6 +78,10 @@ nav {
     height: 4.5vw;
     border-radius: 1rem;
     margin-top: 1vh;
+    min-height: 60px;
+    align-items: center;
+    flex-wrap: nowrap;
+    padding: 0 1rem;
 }
 
 hr {
@@ -78,6 +96,7 @@ hr {
     display: flex;
     align-items: center;
     padding-inline: 5rem;
+    gap: 2rem;
 }
 
 nav a {
@@ -85,6 +104,34 @@ nav a {
     text-decoration: none;
     color: #FFFFFF;
     font-size: 1.8vw;
+    position: relative;
+    transition: color 0.3s;
+    padding: 0.5rem 1rem;
+    white-space: nowrap;
+}
+
+nav a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -5px;
+    left: 0;
+    background-color: #F0A500;
+    transition: width 0.3s ease;
+}
+
+nav a:hover {
+    color: #F0A500;
+}
+
+nav a:hover::after {
+    width: 100%;
+}
+
+.nigger {
+    position: absolute;
+    padding-left: 5px;
 }
 
 nav img {
@@ -190,12 +237,15 @@ nav img {
 }
 
 .download-box {
-    padding: 10%;
+    padding: 5%;
     background-color: rgba(57, 62, 71, 0.68);
     margin: 5rem auto;
     width: 90%;
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
+    position: relative;
+    overflow: hidden;
 }
 
 .download-box h1 {
@@ -219,14 +269,51 @@ nav img {
     color: #F0A500;
 }
 
+/* Mobile-first approach - start with single column for mobile */
 .usermanual {
-    padding: 15%;
+    padding: 1rem;
     background-color: rgba(57, 62, 71, 0.68);
-    margin-block: 5rem;
+    margin: 3rem auto;
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+.usermanual section {
+    width: 100%;
+    margin: 0;
+    padding: 1rem;
+    background-color: rgba(57, 62, 71, 0.8);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.usermanual section:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+}
+
+.usermanual h1 {
+    margin-bottom: 1rem;
+    font-size: 1.6rem;
+    color: #F0A500;
+    border-bottom: 2px solid #F0A500;
+    padding-bottom: 0.5rem;
+}
+
+.usermanual p {
+    margin-bottom: 0.5rem;
+    line-height: 1.4;
 }
 
 .button-container {
     width: 50%;
+    min-width: 300px;
+    margin-bottom: 2rem;
 }
 
 .text-container {
@@ -237,14 +324,23 @@ nav img {
 .text-container li {
     list-style-type: decimal;
     margin-bottom: 30px;
+    position: relative;
+    display: flex;
+    align-items: center;
 }
 
 .text-container li::marker {
     color: #F0A500;
 }
 
+.text-container svg {
+    margin-left: 10px;
+    height: 24px;
+    width: 24px;
+}
+
 .text-container img {
-    height:50px;
+    height: 50px;
     filter: invert(100%);
     list-style-type: none;
     text-decoration: none;
@@ -281,7 +377,7 @@ nav img {
     background-color: #F0A500;
     color: #FFFFFF;
     border-radius: 50%;
-    display: none;
+    display: flex;
     align-items: center;
     justify-content: center;
     text-decoration: none;
@@ -297,16 +393,10 @@ nav img {
     transform: scale(1.1);
 }
 
-.usermanual {
-    padding: 5%;
-    background-color: rgba(57, 62, 71, 0.68);
-    margin: 5rem auto;
-    width: 90%;
-}
-
 @media screen and (max-width: 1300px) {
     .button-box {
-        padding-inline: 0rem;
+        padding-inline: 2rem;
+        gap: 1.5rem;
     }
     .card-box {
         flex-wrap: wrap;
@@ -316,14 +406,25 @@ nav img {
         width: calc(50% - 5rem);
         margin-bottom: 5rem;
     }
+
+    .hero {
+        width: 100vw;
+        flex-direction: column;
+        align-items: center;
+    }
+
     .hero-text {
         width: 90%;
+        margin-left: 0;
+        text-align: center;
+        align-items: center;
     }
     #container3D{
         visibility: hidden;
         position: absolute; 
     }
     nav {
+        width: 95vw;
         min-height: 58.5px;
     }
     nav a {
@@ -333,20 +434,1079 @@ nav img {
         height: 52px;
         margin-top: 3px;
     }
+
+    .download-box {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    
+    .button-container, .text-container {
+        width: 100%;
+        margin-bottom: 2rem;
+    }
+    
+    .usermanual {
+        grid-template-columns: repeat(2, 1fr); /* 2x2 layout for medium screens */
+    }
+    
+    .usermanual section {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 930px) {
+    .hero-text h1 {
+        font-size: 4rem;
+    }
+    
+    .hero-text p {
+        font-size: 1.5rem;
+    }
+    
+    .hero-text a {
+        width: 14rem;
+        font-size: 2rem;
+    }
 }
 
 @media screen and (max-width: 730px) {
     .card-box {
         flex-direction: column;
         align-items: center;
+        max-width: 100vw;
     }
+
+    nav {
+        height: auto;
+        padding: 0.7rem;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        min-height: 50px;
+        width: 95vw;
+    }
+    
+    .button-box {
+        padding: 0 1rem;
+        width: auto;
+        justify-content: center;
+        gap: 1.2rem;
+    }
+
+    nav a {
+        font-size: 1.2rem;
+        margin: 0 0.8rem;
+        padding: 0.4rem 0.7rem;
+    }
+
+    nav img {
+        height: 40px;
+        margin: 0;
+        order: 0;
+    }
+
     .card {
         width: 90%;
+        height: auto;
+        min-height: 15rem;
     }
-    .download-box h1{
+    
+    .card h1 {
+        font-size: 2rem;
+    }
+    
+    .card p {
+        font-size: 1.4rem;
+    }
+    
+    .download-box h1 {
+        font-size: 2.5rem;
+    }
+    
+    .download-box button {
+        font-size: 1.8rem;
+        padding: 0.8rem 2rem;
+    }
+
+    .download-box {
+        padding: 5%;
+    }
+
+    .text-container {
+        width: 100%;
+        text-align: left;
+        font-size: 1.5rem;
+    }
+    
+    .text-container li {
+        margin-bottom: 15px;
+    }
+    
+    .hero-text h1 {
         font-size: 3rem;
     }
-    .download-box button{
+    
+    .hero-text p {
+        font-size: 1.2rem;
+    }
+    
+    .hero-text a {
+        width: 12rem;
+        font-size: 1.6rem;
+    }
+
+    .footer-section {
+        padding: 0.5rem;
+        min-width: 100%;
+    }
+    
+    .footer-bottom {
+        font-size: 0.8rem;
+        padding: 1rem 0.5rem;
+    }
+
+    .footer-section h2 {
+        text-align: center;
+    }
+    
+    .footer-section h2::after {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .usermanual {
+        grid-template-columns: 1fr !important; /* Force single column */
+        padding: 1rem;
+        width: 95%;
+        gap: 1rem;
+        margin: 3rem auto;
+    }
+    
+    .usermanual h1 {
+        font-size: 1.6rem;
+    }
+    
+    .usermanual p {
+        font-size: 0.8rem;
+        margin-bottom: 0.4rem;
+    }
+}
+
+@media screen and (max-width: 550px) {
+    nav {
+        width: 100%;
+    }
+
+    .button-box {
+        padding: 0 0.5rem;
+        gap: 0.8rem;
+    }
+    
+    nav a {
+        font-size: 1rem;
+        margin: 0 0.3rem;
+        padding: 0.3rem 0.4rem;
+    }
+    
+    nav img {
+        height: 38px;
+        max-width: 80px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .hero-text h1 {
+        font-size: 2.5rem;
+    }
+    
+    .hero-text p {
+        font-size: 1rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .hero-text a {
+        width: 10rem;
+        font-size: 1.4rem;
+        padding: 0.5rem;
+    }
+    
+    .hero-text {
+        margin-block: 3rem;
+    }
+    
+    .card h1 {
+        font-size: 1.8rem;
+    }
+    
+    .card p {
+        font-size: 1.2rem;
+    }
+    
+    .download-box h1 {
         font-size: 2rem;
+        margin-bottom: 1rem;
+    }
+    
+    .download-box button {
+        font-size: 1.5rem;
+        padding: 0.6rem 1.5rem;
+    }
+    
+    .usermanual {
+        padding: 0.8rem;
+        gap: 0.8rem;
+        margin: 2rem auto;
+    }
+    
+    .usermanual section {
+        padding: 0.8rem;
+    }
+    
+    .usermanual h1 {
+        font-size: 1.4rem;
+        padding-bottom: 0.3rem;
+    }
+    
+    .usermanual p {
+        font-size: 0.9rem;
+    }
+    
+    hr {
+        margin: 0.5rem auto;
+    }
+    
+    .scroll-to-top {
+        bottom: 1rem;
+        right: 1rem;
+        width: 2.5rem;
+        height: 2.5rem;
+        font-size: 1.5rem;
+    }
+    
+    nav {
+        padding: 0.7rem 0.5rem;
+        width: 100%;
+    }
+    
+    .button-box {
+        padding: 0;
+        gap: 0.5rem;
+    }
+    
+    nav a {
+        font-size: 0.9rem;
+        margin: 0 0.2rem;
+        padding: 0.3rem 0.4rem;
+    }
+    
+    nav img {
+        height: 35px;
+        max-width: 60px;
+    }
+    
+    .footer-section h2 {
+        font-size: 1.5rem;
+    }
+    
+    .footer-section.about p {
+        font-size: 0.9rem;
+    }
+    
+    .contact span {
+        font-size: 1rem;
+        justify-content: center;
+        margin-bottom: 0.7rem;
+    }
+    
+    .socials a {
+        width: 35px;
+        height: 35px;
+        margin-right: 0.7rem;
+    }
+    
+    .footer-section.links li {
+        margin-bottom: 0.5rem;
+        font-size: 0.9rem;
+    }
+    
+    .footer-bottom {
+        font-size: 0.8rem;
+        padding: 1rem;
+    }
+}
+
+@media screen and (max-width: 370px) {
+    nav {
+        flex-direction: column;
+        padding: 0.5rem;
+        height: auto;
+        width: 100%;
+    }
+    
+    .button-box {
+        width: 100%;
+        justify-content: center;
+        margin: 0.3rem 0;
+        gap: 1rem;
+    }
+    
+    nav img {
+        height: 30px;
+        margin: 0.2rem 0;
+    }
+    
+    nav a {
+        font-size: 0.85rem;
+        margin: 0;
+        padding: 0.3rem;
+    }
+
+    .usermanual {
+        padding: 0.5rem;
+        width: 92%;
+        gap: 0.7rem;
+        margin: 1.5rem auto;
+    }
+    
+    .usermanual section {
+        padding: 0.6rem;
+        border-radius: 6px;
+    }
+    
+    .usermanual h1 {
+        font-size: 1.2rem;
+        padding-bottom: 0.2rem;
+        margin-bottom: 0.6rem;
+    }
+    
+    .usermanual p {
+        font-size: 0.8rem;
+        margin-bottom: 0.3rem;
+        line-height: 1.3;
+    }
+}
+
+/* Footer Styles */
+.footer {
+    background-color: #393E47;
+    color: #fff;
+    padding: 2rem 0;
+    width: 100%;
+    margin-top: 3rem;
+    border-top: 5px solid #F0A500;
+}
+
+.footer-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 0 auto;
+    max-width: 1200px;
+    padding: 0 2rem;
+}
+
+.footer-section {
+    flex: 1;
+    padding: 1rem;
+    min-width: 300px;
+    text-align: center;
+}
+
+.footer-section h2 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    position: relative;
+    color: #F0A500;
+}
+
+.footer-section h2::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -0.5rem;
+    width: 50px;
+    height: 3px;
+    background-color: #F0A500;
+}
+
+.footer-section.about p {
+    margin-bottom: 1.5rem;
+    line-height: 1.5;
+    text-align: center;
+}
+
+.contact {
+    margin-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.contact span {
+    display: block;
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+}
+
+.socials {
+    display: flex;
+    margin-top: 1rem;
+}
+
+.socials a {
+    display: inline-block;
+    margin-right: 1rem;
+    width: 40px;
+    height: 40px;
+    background-color: #F0A500;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s;
+}
+
+.socials a:hover {
+    background-color: #fff;
+    color: #F0A500;
+}
+
+.socials svg {
+    stroke: #fff;
+    transition: all 0.3s;
+}
+
+.socials a:hover svg {
+    stroke: #F0A500;
+}
+
+.footer-section.links ul {
+    list-style: none;
+}
+
+.footer-section.links li {
+    margin-bottom: 0.8rem;
+    position: relative;
+    padding-left: 15px;
+}
+
+.footer-section.links li::before {
+    content: '>';
+    position: absolute;
+    left: 0;
+    color: #F0A500;
+}
+
+.footer-section.links a {
+    color: #fff;
+    text-decoration: none;
+    transition: all 0.3s;
+}
+
+.footer-section.links a:hover {
+    color: #F0A500;
+    margin-left: 5px;
+}
+
+.footer-section.newsletter p {
+    margin-bottom: 1rem;
+}
+
+.footer-section.newsletter form {
+    display: flex;
+    flex-direction: column;
+}
+
+.footer-section.newsletter input {
+    padding: 0.8rem;
+    border: none;
+    background-color: #2D3238;
+    color: #fff;
+    margin-bottom: 0.8rem;
+    outline: none;
+    border-radius: 4px;
+}
+
+.footer-section.newsletter button {
+    background-color: #F0A500;
+    color: #fff;
+    border: none;
+    padding: 0.8rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.footer-section.newsletter button:hover {
+    background-color: #fff;
+    color: #F0A500;
+}
+
+.footer-bottom {
+    text-align: center;
+    padding: 1.5rem 0;
+    margin-top: 2rem;
+    background-color: #2D3238;
+    width: 100%;
+    font-size: 0.9rem;
+}
+
+@media screen and (max-width: 930px) {
+    .footer-content {
+        flex-direction: column;
+    }
+    
+    .footer-section {
+        margin-bottom: 2rem;
+    }
+}
+
+/* Medium screens: 2x2 grid */
+@media screen and (min-width: 768px) {
+    .usermanual {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        margin: 4rem auto;
+        gap: 1.5rem;
+    }
+    
+    .usermanual h1 {
+        font-size: 1.8rem;
+    }
+}
+
+/* Large screens: 4x1 grid */
+@media screen and (min-width: 1200px) {
+    .usermanual {
+        grid-template-columns: repeat(4, 1fr);
+        width: 90%;
+        padding: 2rem;
+        margin: 5rem auto;
+        gap: 2rem;
+    }
+    
+    .usermanual h1 {
+        font-size: 2rem;
+    }
+}
+
+/* Smaller mobile adjustments */
+@media screen and (max-width: 480px) {
+    .usermanual {
+        padding: 0.8rem;
+        gap: 0.8rem;
+        margin: 2rem auto;
+    }
+    
+    .usermanual section {
+        padding: 0.8rem;
+    }
+    
+    .usermanual h1 {
+        font-size: 1.4rem;
+        padding-bottom: 0.3rem;
+    }
+    
+    .usermanual p {
+        font-size: 0.9rem;
+    }
+}
+
+/* Very small screens */
+@media screen and (max-width: 320px) {
+    .usermanual {
+        width: 92%;
+        padding: 0.5rem;
+        gap: 0.6rem;
+        margin: 1.5rem auto;
+    }
+    
+    .usermanual section {
+        padding: 0.6rem;
+        border-radius: 6px;
+    }
+    
+    .usermanual h1 {
+        font-size: 1.2rem;
+        padding-bottom: 0.3rem;
+        margin-bottom: 0.7rem;
+    }
+    
+    .usermanual p {
+        font-size: 0.8rem;
+        margin-bottom: 0.4rem;
+    }
+}
+
+main {
+    width: 100%;
+    overflow-x: hidden;
+}
+
+@media screen and (max-width: 320px) {
+    .usermanual {
+        width: 90%;
+        padding: 0.4rem;
+        gap: 0.5rem;
+    }
+    
+    .usermanual section {
+        padding: 0.5rem;
+    }
+    
+    .usermanual h1 {
+        font-size: 1.1rem;
+    }
+    
+    .usermanual p {
+        font-size: 0.75rem;
+    }
+    
+    .hero-text h1 {
+        font-size: 2rem;
+    }
+    
+    .hero-text p {
+        font-size: 0.9rem;
+    }
+    
+    .hero-text a {
+        width: 8rem;
+        font-size: 1.2rem;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .usermanual {
+        grid-template-columns: repeat(2, 1fr); /* 2x2 layout for medium screens */
+        width: 95%;
+        gap: 1rem;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    .usermanual {
+        grid-template-columns: repeat(4, 1fr); /* 4x1 layout for large screens */
+        width: 90%;
+        gap: 1.5rem;
+        padding: 2rem;
+    }
+}
+
+/* Ensure small screens have a single column layout */
+@media screen and (max-width: 767px) {
+    .usermanual {
+        display: flex;
+        flex-direction: column;
+        width: 95%;
+        gap: 1rem;
+        padding: 1rem;
+    }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+    nav {
+        width: 98%;
+        padding: 0.5rem;
+        justify-content: space-around;
+        height: auto;
+        min-height: 50px;
+    }
+    
+    .button-box {
+        padding-inline: 0;
+        gap: 12px;
+    }
+    
+    nav a {
+        font-size: 18px;
+        margin: 0 0.2rem;
+        padding: 0.3rem 0.4rem;
+        font-weight: 500;
+    }
+    
+    nav img {
+        max-width: 60px;
+        height: 40px;
+        margin: 0;
+    }
+
+    /* Content text sizes */
+    .hero-text h1 {
+        font-size: 3.5rem;
+    }
+    
+    .hero-text p {
+        font-size: 1.6rem;
+    }
+    
+    .hero-text a {
+        font-size: 1.8rem;
+    }
+    
+    .card h1 {
+        font-size: 2.2rem;
+    }
+    
+    .card p {
+        font-size: 1.5rem;
+    }
+    
+    .download-box h1 {
+        font-size: 3rem;
+    }
+    
+    .download-box button {
+        font-size: 2rem;
+    }
+    
+    .text-container {
+        font-size: 1.6rem;
+    }
+    
+    .text-container li {
+        margin-bottom: 20px;
+    }
+    
+    .usermanual h1 {
+        font-size: 1.9rem;
+    }
+    
+    .usermanual p {
+        font-size: 1.4rem;
+    }
+    
+    .footer-section h2 {
+        font-size: 2rem;
+    }
+    
+    .footer-section.about p {
+        font-size: 1.4rem;
+    }
+    
+    .contact span {
+        font-size: 1.4rem;
+    }
+    
+    .footer-bottom {
+        font-size: 1rem;
+    }
+}
+
+/* More reliable targeting for iPad-like resolutions */
+@media screen and (min-width: 768px) and (max-width: 770px) {
+    nav {
+        width: 96%;
+        padding: 0.4rem;
+    }
+    
+    .button-box {
+        padding-inline: 0;
+        gap: 0.2rem;
+    }
+    
+    nav a {
+        font-size: 14px;
+        margin: 0 0.15rem;
+        padding: 0.25rem 0.3rem;
+    }
+    
+    nav img {
+        max-width: 45px;
+        height: 35px;
+    }
+}
+
+/* iPad Mini */
+@media only screen and (min-device-width: 768px) and (max-device-width: 768px) {
+    nav {
+        width: 96%;
+    }
+    
+    .button-box {
+        padding: 0;
+        gap: 10px;
+    }
+    
+    nav a {
+        font-size: 16px;
+        margin: 0 0.1rem;
+        padding: 0.3rem;
+        font-weight: 500;
+    }
+    
+    nav img {
+        max-width: 40px;
+        height: 30px;
+    }
+}
+
+/* iPad Pro */
+@media only screen and (min-device-width: 1024px) and (max-device-width: 1024px) {
+    nav {
+        width: 98%;
+    }
+    
+    .button-box {
+        padding-inline: 0.5rem;
+    }
+    
+    nav a {
+        font-size: 18px;
+    }
+}
+
+/* iPad/Tablet 768px width fix */
+@media (width: 768px) {
+    nav {
+        width: 98vw;
+        padding: 0.3rem;
+    }
+    
+    .button-box {
+        padding: 0;
+        gap: 10px;
+    }
+    
+    nav a {
+        font-size: 16px;
+        margin: 0;
+        padding: 0.3rem;
+        font-weight: 500;
+    }
+    
+    nav img {
+        max-width: 40px;
+        height: 30px;
+    }
+    
+    /* Content text sizes */
+    .hero-text h1 {
+        font-size: 3.2rem;
+    }
+    
+    .hero-text p {
+        font-size: 1.5rem;
+    }
+    
+    .hero-text a {
+        font-size: 1.7rem;
+    }
+    
+    .card h1 {
+        font-size: 2rem;
+    }
+    
+    .card p {
+        font-size: 1.4rem;
+    }
+    
+    .usermanual h1 {
+        font-size: 1.8rem;
+    }
+    
+    .usermanual p {
+        font-size: 1.3rem;
+    }
+    
+    .footer-section h2 {
+        font-size: 1.8rem;
+    }
+    
+    .footer-section.about p {
+        font-size: 1.3rem;
+    }
+    
+    .contact span {
+        font-size: 1.3rem;
+    }
+}
+
+/* Styles for 912x1368 resolution (larger tablets) */
+@media (width: 912px), (min-width: 900px) and (max-width: 950px) {
+    /* Navigation */
+    nav {
+        width: 98%;
+        padding: 0.6rem;
+    }
+    
+    .button-box {
+        padding: 0 0.5rem;
+        gap: 15px;
+    }
+    
+    nav a {
+        font-size: 20px;
+        margin: 0 0.2rem;
+        padding: 0.4rem 0.5rem;
+        font-weight: 500;
+    }
+    
+    nav img {
+        max-width: 65px;
+        height: 45px;
+    }
+    
+    /* Content text sizes */
+    .hero-text h1 {
+        font-size: 4rem;
+    }
+    
+    .hero-text p {
+        font-size: 1.8rem;
+    }
+    
+    .hero-text a {
+        font-size: 2rem;
+        padding: 0.8rem;
+        width: 18rem;
+    }
+    
+    .card h1 {
+        font-size: 2.5rem;
+    }
+    
+    .card p {
+        font-size: 1.6rem;
+    }
+    
+    .download-box h1 {
+        font-size: 3.5rem;
+    }
+    
+    .download-box button {
+        font-size: 2.2rem;
+        padding: 1rem 3.5rem;
+    }
+    
+    .text-container {
+        font-size: 1.8rem;
+    }
+    
+    .text-container li {
+        margin-bottom: 25px;
+    }
+    
+    .usermanual h1 {
+        font-size: 2.2rem;
+    }
+    
+    .usermanual p {
+        font-size: 1.6rem;
+    }
+    
+    .footer-section h2 {
+        font-size: 2.2rem;
+    }
+    
+    .footer-section.about p {
+        font-size: 1.6rem;
+    }
+    
+    .contact span {
+        font-size: 1.6rem;
+    }
+    
+    .footer-bottom {
+        font-size: 1.2rem;
+    }
+}
+
+/* Exact match for 912px width (Samsung Galaxy Tab, etc.) */
+@media (width: 912px) {
+    nav a {
+        font-size: 22px;
+    }
+    
+    .hero-text h1 {
+        font-size: 4.2rem;
+    }
+    
+    .hero-text p {
+        font-size: 2rem;
+    }
+    
+    .hero-text a {
+        font-size: 2.2rem;
+        width: 20rem;
+    }
+    
+    .card h1 {
+        font-size: 2.6rem;
+    }
+    
+    .card p {
+        font-size: 1.7rem;
+    }
+    
+    .usermanual h1 {
+        font-size: 2.4rem;
+    }
+    
+    .usermanual p {
+        font-size: 1.7rem;
+        line-height: 1.6;
+        margin-bottom: 0.8rem;
+    }
+}
+
+/* General styles for larger tablets and mid-sized devices */
+@media (min-width: 800px) and (max-width: 1000px) {
+    html {
+        font-size: 16px;
+    }
+    
+    nav a {
+        font-size: 18px;
+        padding: 0.4rem 0.6rem;
+    }
+    
+    .button-box {
+        gap: 12px;
+    }
+    
+    .hero-text h1 {
+        font-size: 3.8rem;
+    }
+    
+    .hero-text p {
+        font-size: 1.8rem;
+    }
+    
+    .hero-text a {
+        font-size: 1.8rem;
+        width: 18rem;
+    }
+    
+    .card h1 {
+        font-size: 2.3rem;
+    }
+    
+    .card p {
+        font-size: 1.5rem;
+    }
+    
+    .download-box h1 {
+        font-size: 3.2rem;
+    }
+    
+    .download-box button {
+        font-size: 2rem;
+    }
+    
+    .usermanual {
+        gap: 1.5rem;
+    }
+    
+    .usermanual h1 {
+        font-size: 2rem;
+    }
+    
+    .usermanual p {
+        font-size: 1.5rem;
+        margin-bottom: 0.6rem;
     }
 }
